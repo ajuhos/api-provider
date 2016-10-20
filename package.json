@@ -1,0 +1,19 @@
+{
+  "name": "api-provider",
+  "version": "0.0.2",
+  "description": "A framework for providing multi-level API via any web framewo$
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "We Are Break <ajuhos@we-are-break.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajuhos/api-provider.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ajuhos/api-provider/issues"
+  },
+  "homepage": "https://github.com/ajuhos/api-provider#readme"
+}
