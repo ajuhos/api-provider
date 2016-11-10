@@ -1,8 +1,8 @@
 {
   "name": "api-provider",
-  "version": "0.0.2",
-  "description": "A framework for providing multi-level API via any web framewo$
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Build multi-level model-based APIs quickly with api-core.",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ajuhos/api-provider/issues"
   },
-  "homepage": "https://github.com/ajuhos/api-provider#readme"
+  "homepage": "https://github.com/ajuhos/api-provider#readme",
+  "dependencies": {
+    "api-core": "^0.3.0",
+    "require-directory": "^2.1.1"
+  }
 }
