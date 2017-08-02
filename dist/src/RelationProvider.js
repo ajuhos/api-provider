@@ -24,6 +24,7 @@ class RelationProvider {
                 }));
                 break;
             case ApiEdgeRelationDescription_1.ApiEdgeRelationType.OneToMany:
+            case ApiEdgeRelationDescription_1.ApiEdgeRelationType.ManyToMany:
                 relations.push(new api_core_1.OneToManyRelation(from, to, {
                     relationId: description.relationId,
                     relatedId: description.relatedId,
@@ -34,11 +35,20 @@ class RelationProvider {
                 throw "Unsupported Description Type";
         }
         if (description.twoWay) {
-            relations.push(new api_core_1.OneToOneRelation(to, from, {
-                relatedId: description.relationId,
-                relationId: description.relatedId,
-                name: description.relationName
-            }));
+            if (description.type === ApiEdgeRelationDescription_1.ApiEdgeRelationType.ManyToMany) {
+                relations.push(new api_core_1.OneToManyRelation(to, from, {
+                    relatedId: description.relationId,
+                    relationId: description.relatedId,
+                    name: description.relationName
+                }));
+            }
+            else {
+                relations.push(new api_core_1.OneToOneRelation(to, from, {
+                    relatedId: description.relationId,
+                    relationId: description.relatedId,
+                    name: description.relationName
+                }));
+            }
         }
         return relations;
     }

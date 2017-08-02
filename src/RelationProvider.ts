@@ -33,6 +33,7 @@ export class RelationProvider {
                 }));
                 break;
             case ApiEdgeRelationType.OneToMany:
+            case ApiEdgeRelationType.ManyToMany:
                 relations.push(new OneToManyRelation(from, to, {
                     relationId: description.relationId,
                     relatedId: description.relatedId,
@@ -44,11 +45,20 @@ export class RelationProvider {
         }
 
         if(description.twoWay) {
-            relations.push(new OneToOneRelation(to, from, {
-                relatedId: description.relationId,
-                relationId: description.relatedId,
-                name: description.relationName
-            }));
+            if(description.type === ApiEdgeRelationType.ManyToMany) {
+                relations.push(new OneToManyRelation(to, from, {
+                    relatedId: description.relationId,
+                    relationId: description.relatedId,
+                    name: description.relationName
+                }));
+            }
+            else {
+                relations.push(new OneToOneRelation(to, from, {
+                    relatedId: description.relationId,
+                    relationId: description.relatedId,
+                    name: description.relationName
+                }));
+            }
         }
 
         return relations

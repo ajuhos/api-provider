@@ -1,6 +1,7 @@
 export enum ApiEdgeRelationType {
     OneToOne,
-    OneToMany
+    OneToMany,
+    ManyToMany
 }
 
 export class ApiEdgeRelationDescription {

@@ -2,6 +2,7 @@
 (function (ApiEdgeRelationType) {
     ApiEdgeRelationType[ApiEdgeRelationType["OneToOne"] = 0] = "OneToOne";
     ApiEdgeRelationType[ApiEdgeRelationType["OneToMany"] = 1] = "OneToMany";
+    ApiEdgeRelationType[ApiEdgeRelationType["ManyToMany"] = 2] = "ManyToMany";
 })(exports.ApiEdgeRelationType || (exports.ApiEdgeRelationType = {}));
 var ApiEdgeRelationType = exports.ApiEdgeRelationType;
 class ApiEdgeRelationDescription {

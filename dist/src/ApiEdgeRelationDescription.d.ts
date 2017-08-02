@@ -1,6 +1,7 @@
 export declare enum ApiEdgeRelationType {
     OneToOne = 0,
     OneToMany = 1,
+    ManyToMany = 2,
 }
 export declare class ApiEdgeRelationDescription {
     relationName: string;
