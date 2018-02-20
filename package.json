@@ -1,11 +1,12 @@
 {
   "name": "api-provider",
-  "version": "0.4.1",
+  "version": "0.6.41",
   "description": "Build multi-level model-based APIs quickly with api-core.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "tsc"
+    "prepublish": "tsc"
   },
   "author": "We Are Break <ajuhos@we-are-break.com>",
   "license": "MIT",
@@ -18,7 +19,7 @@
   },
   "homepage": "https://github.com/ajuhos/api-provider#readme",
   "dependencies": {
-    "api-core": "^0.6.0",
+    "api-core": "0.6.40",
     "require-directory": "^2.1.1"
   }
 }
