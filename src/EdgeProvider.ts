@@ -9,17 +9,25 @@ export class EdgeProvider {
         this.api = api
     }
 
-    include(edge: ApiEdgeDefinition) {
-        this.api.edge(edge)
+    async include(edge: ApiEdgeDefinition|Promise<ApiEdgeDefinition>) {
+        if(edge instanceof Promise) {
+            const resolvedEdge = await edge;
+            this.api.edge(resolvedEdge)
+        }
+        else {
+            this.api.edge(edge)
+        }
     }
 
-    includeDir(path: string) {
-        requireDirectory(module, path, {
-            include: '/.js$/',
-            visit: (edge: ApiEdgeDefinition) => {
-                this.include(edge)
-            }
+    async includeDir(path: string) {
+        const hash = requireDirectory(module, path, {
+            include: '/.js$/'
         });
+
+        const keys = Object.keys(hash);
+        for(let key of keys) {
+            await this.include(hash[key])
+        }
     }
 
 }

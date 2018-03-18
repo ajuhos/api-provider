@@ -4,14 +4,23 @@ import {ApiVersionProvider} from "./ApiVersionProvider";
 export class ApiProvider {
 
     private apis: Api[] = [];
+    private providers: ApiVersionProvider[] = [];
 
     version(version: string): ApiVersionProvider {
         const api = new Api(version);
         this.apis.push(api);
-        return new ApiVersionProvider(api)
+
+        const provider = new ApiVersionProvider(api);
+        this.providers.push(provider);
+
+        return provider;
     }
 
-    provide(provider: any) {
+    async provide(provider: any) {
+        for(let provider of this.providers) {
+            await provider.prepare()
+        }
+
         return new provider(this.apis);
     }
 
