@@ -1,5 +1,6 @@
-import {Api,ApiEdgeRelation, OneToOneRelation, OneToManyRelation, ApiEdgeDefinition} from "api-core";
+import {Api, ApiEdgeDefinition, ApiEdgeRelation, OneToManyRelation, OneToOneRelation} from "api-core";
 import {ApiEdgeRelationDescription, ApiEdgeRelationType} from "./ApiEdgeRelationDescription";
+
 const requireDirectory = require("require-directory");
 
 export class RelationProvider {
@@ -24,6 +25,8 @@ export class RelationProvider {
         const from = this.processEdgeName(description.fromName),
             to = this.processEdgeName(description.toName);
 
+        const hasPair = description.type === ApiEdgeRelationType.ManyToMany;
+
         switch(description.type) {
             case ApiEdgeRelationType.OneToOne:
                 relations.push(new OneToOneRelation(from, to, {
@@ -37,7 +40,8 @@ export class RelationProvider {
                 relations.push(new OneToManyRelation(from, to, {
                     relationId: description.relationId,
                     relatedId: description.relatedId,
-                    name: description.relatedName
+                    name: description.relatedName,
+                    hasPair
                 }));
                 break;
             default:
@@ -49,7 +53,8 @@ export class RelationProvider {
                 relations.push(new OneToManyRelation(to, from, {
                     relatedId: description.relationId,
                     relationId: description.relatedId,
-                    name: description.relationName
+                    name: description.relationName,
+                    hasPair
                 }));
             }
             else {

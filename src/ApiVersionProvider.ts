@@ -63,5 +63,6 @@ export class ApiVersionProvider {
             const task = this.queue.shift();
             if(task) await task()
         }
+        await this.api.prepare();
     }
 }
