@@ -1,6 +1,6 @@
 {
   "name": "api-provider",
-  "version": "0.20.0",
+  "version": "0.21.4",
   "description": "Build multi-level model-based APIs quickly with api-core.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/ajuhos/api-provider#readme",
   "dependencies": {
-    "api-core": "0.20.0",
+    "api-core": "0.21.4",
     "require-directory": "^2.1.1"
   },
   "devDependencies": {
