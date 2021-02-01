@@ -12,8 +12,8 @@ export class ApiProvider {
         return this
     }
 
-    version(version: string): ApiVersionProvider {
-        const api = new Api(version);
+    service({ name, version }: any): ApiVersionProvider {
+        const api = new Api({ name, version });
         if(this.resolverFactory) api.resolver = this.resolverFactory(api);
 
         this.apis.push(api);
