@@ -1,4 +1,4 @@
-import {Api, ApiResolver} from "api-core";
+import {Api, ApiInfo, ApiResolver} from "api-core";
 import {ApiVersionProvider} from "./ApiVersionProvider";
 
 export class ApiProvider {
@@ -12,8 +12,14 @@ export class ApiProvider {
         return this
     }
 
-    service({ name, version }: any): ApiVersionProvider {
+    service({ name, version, description }: any, url?: string, info?: ApiInfo): ApiVersionProvider {
         const api = new Api({ name, version });
+        api.url = url || process.env.API_URL || 'http://localhost';
+        api.info = info || {
+            title: name,
+            description
+        };
+
         if(this.resolverFactory) api.resolver = this.resolverFactory(api);
 
         this.apis.push(api);
